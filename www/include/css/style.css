@@ -1,0 +1,39 @@
+@keyframes pulse {
+	0% {transform: scale(1)}
+	50% {transform: scale(1.1)}
+	100% {transform: scale(1)}
+}
+
+* {
+	font-family:arial;
+	/*-webkit-user-select:none;*/
+	user-select:none;
+	/*cursor:url(../../include/images/cursor.png), auto;*/
+}
+
+button {
+	position:relative;
+	pointer-events:auto;
+	cursor:pointer;
+	background-image: linear-gradient(to bottom, #79043f, #470852);
+	border-radius: 5px;
+	text-shadow: 1px 1px 0px #030303;
+	color: #ffffff;
+	padding: 2% 2% 2% 2%;
+	border:2px solid #33005c;
+	font-size: 100%;
+}
+button:disabled {
+	color: #ffffff;
+	background: #a2a2a2;
+	border-width: 0px;
+}
+button:hover:not([disabled]) {
+	top:2px;
+	color: #6fde5a;
+}
+input {
+	pointer-events:auto;
+}
+
+
