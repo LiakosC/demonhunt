@@ -1,6 +1,0 @@
-#htmlbox {
-    pointer-events: none;
-}
-#htmlbox * {
-    pointer-events: auto;
-}

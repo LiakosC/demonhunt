@@ -1,0 +1,179 @@
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" href="include/css/style.css"/>
+		<link rel="stylesheet" type="text/css" href="include/css/htmlbox.css"/>
+		<link rel="stylesheet" type="text/css" href="include/css/menuBox.css"/>
+		<link rel="stylesheet" type="text/css" href="include/css/victory.css"/>
+		<link rel="stylesheet" type="text/css" href="include/css/EpicLoading.css"/>
+		<link rel="stylesheet" type="text/css" href="include/css/Speaker.css"/>
+		
+		<!-- lib -->
+		<script language="javascript" type="text/javascript" src="include/js/lib/jquery-1.11.3.min.js"></script>
+		<script language="javascript" type="text/javascript" src="include/js/lib/phaser-2.9.3.min.js"></script>
+		<script language="javascript" type="text/javascript" src="include/js/lib/g2.js"></script>
+		<script language="javascript" type="text/javascript" src="include/js/lib/G2Lighter.js"></script>
+		<script language="javascript" type="text/javascript" src="include/js/lib/FlexibleWindow.js"></script>
+		<script language="javascript" type="text/javascript" src="include/js/lib/EpicLoading.js"></script>
+		<script language="javascript" type="text/javascript" src="include/js/lib/Book.js"></script>
+		<script language="javascript" type="text/javascript" src="include/js/lib/Model.js"></script>
+		<script language="javascript" type="text/javascript" src="include/js/lib/JSONMemory.js"></script>
+		
+		<!-- sound -->
+		<script language="javascript" type="text/javascript" src="include/sp/howler.min.js"></script>
+		<script language="javascript" type="text/javascript" src="include/sp/sp.js"></script>
+		
+		<!--script language="javascript" type="text/javascript" src="include/js/Grid.js"></script>-->
+		<script language="javascript" type="text/javascript" src="include/js/boot.js"></script>
+		<script language="javascript" type="text/javascript" src="include/js/Episode.js"></script>
+		<script language="javascript" type="text/javascript" src="include/js/loading.js"></script>
+		<script language="javascript" type="text/javascript" src="include/js/cinematic.js"></script>
+		<script language="javascript" type="text/javascript" src="include/js/menu.js"></script>
+		<script language="javascript" type="text/javascript" src="include/js/game/game.js"></script>
+		<script language="javascript" type="text/javascript" src="include/js/game/game.preload.js"></script>
+		<script language="javascript" type="text/javascript" src="include/js/game/game.Input.js"></script>
+		<script language="javascript" type="text/javascript" src="include/js/game/game.Level.js"></script>
+		<script language="javascript" type="text/javascript" src="include/js/game/game.Room.js"></script>
+		<script language="javascript" type="text/javascript" src="include/js/game/game.Entity.js"></script>
+		<script language="javascript" type="text/javascript" src="include/js/game/game.Unit.js"></script>
+		<script language="javascript" type="text/javascript" src="include/js/game/game.SkeletonUnit.js"></script>
+		<script language="javascript" type="text/javascript" src="include/js/game/game.HeroUnit.js"></script>
+		<script language="javascript" type="text/javascript" src="include/js/game/game.Wall.js"></script>
+		<script language="javascript" type="text/javascript" src="include/js/game/game.Coin.js"></script>
+		<script language="javascript" type="text/javascript" src="include/js/boot.episodes.js"></script>
+		<script language="javascript" type="text/javascript" src="include/js/victory.js"></script>
+		<script language="javascript" type="text/javascript" src="include/js/Speaker.js"></script>
+	</head>
+	<body></body>
+</html>
+<script language="javascript" type="text/javascript">
+	const OFFICIAL = true;
+	const FAST_LOADING = false;
+	const LOAD_CINEMATIC = true;
+	const GRAVITY = 1650;
+	const JUMP_SPEED = 600;
+	const Y_TO_DIE = 2000;
+	const MENU_MUSIC = true;
+	const GOD_MODE = true;
+	const WIDTH = 800;//nw.Window.get().window.innerWidth;
+	const HEIGHT = 600; //nw.Window.get().window.innerHeight;
+	const FPS = 60;
+	const GRAPHICS_ROOT = "include/graphics";
+	const AUDIO_ROOT = "include/audio";
+
+	var win = new FlexibleWindow(null, 800, 600);
+	var gamebox = $("<div>").prop("id", "gamebox").appendTo(win.element).css({
+		position: "absolute",
+		left: "0%", top: "0%", width: "100%", height: "100%"
+	})[0];
+	var htmlbox = $("<div>").prop("id", "htmlbox").appendTo(win.element).css({
+		position: "absolute",
+		left: "0%", top: "0%", width: "100%", height: "100%"
+	})[0];
+	
+	
+	function exit() {
+		console.log("Exiting.. Electron??");	
+	}
+
+
+
+
+	var ph = new Phaser.Game(WIDTH, HEIGHT, Phaser.CANVAS, gamebox);
+	ph.state.add("boot", boot.state);
+	ph.state.add("loading", loading.state);
+	ph.state.add("cinematic", cinematic.state);
+	ph.state.add("menu", menu.state);
+	ph.state.add("game", game.state);
+	ph.state.add("victory", victory.state);
+
+
+
+
+
+
+	var memory = new JSONMemory("demonhunt_data");
+	//memory.logEnabled = true;
+	var memoryStruct_level 		= function() {return {completed: false, gold: 0, goldMax: 0};};
+	var memoryStruct_profile	= function() {
+		return {
+				episodes: {
+				"1": {
+					levels: {
+						"1": memoryStruct_level(),
+						"2": memoryStruct_level(),
+						"3": memoryStruct_level(),
+						"4": memoryStruct_level(),
+						"5": memoryStruct_level()
+					},
+					artifacts: {
+						"Mask of the Demon Hunter": false
+					}
+				},
+				"2": {
+					levels: {
+						"1": memoryStruct_level(),
+						"2": memoryStruct_level(),
+						"3": memoryStruct_level(),
+						"4": memoryStruct_level(),
+						"5": memoryStruct_level(),
+						"6": memoryStruct_level()
+					},
+					artifacts: {
+						metallion: false,
+						blade_of_souls: false,
+						diamond: false
+					}
+				}
+			}
+		};
+	}
+	memory.Init({
+		profiles: {
+			"Default Player": memoryStruct_profile()
+		}, options: {}
+	});
+	//memory.Report();
+
+
+
+
+
+
+
+
+
+
+	//function go() {
+	//	menu.callback = function() {
+	//		menu.BK.start("profiles"); // OFFICIAL
+	//		boot.SetProfile("Default Player");
+	//		//menu.StartPage_levels(1); // (episodeKey)
+	//		boot.StartLevel(1, 1);
+	//		//victory.start();
+	//	};
+	//}
+
+
+	
+	//function official() {
+	//	menu.callback = function() {
+	//		menu.BK.start("main");
+	//	};
+	//}
+	//boot.SetProfile("Default Player");
+	//boot.StartLevel(1, 2);
+	//if (OFFICIAL) {
+	//	official();
+	//} else {
+	//	official();
+	//}
+
+	//loading.callback = function() {menu.start();};
+
+	ph.state.start("boot");
+	
+	var purgeButton = $("<button>").html("Purge Memory").click(function() {
+		memory.Purge();
+	}).appendTo(document.body);
+	
+</script>
