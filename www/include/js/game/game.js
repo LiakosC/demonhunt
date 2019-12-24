@@ -10,6 +10,18 @@ game.start = function(episode, level, cb) {
 	if (cb !== undefined) {game.startCB = cb;}
 }
 game.input = null;
+
+
+
+
+
+
+
+
+
+
+
+
 game.state = {
 	create: function() {
 		console.log("game.create()");
@@ -146,6 +158,14 @@ game.state = {
 
 
 
+
+
+
+
+
+
+
+
 game.createGate150 = function(x, y) {
 	var gate = {};
 	gate.sprite = ph.add.sprite(x, y, "gate150_closed");
@@ -192,7 +212,8 @@ game.Victory = function() {
 	var episodeData = boot.profileMemoryData.episodes[game.episode];
 	var levelData = episodeData.levels[game.level];
 	levelData.completed = true;
-	levelData.gold = game.goldGained;
+	if (game.goldGained > levelData.gold)
+		levelData.gold = game.goldGained;
 	// artifacts gained have their flag set to true in memory
 	for (var i=0; i<game.artifactsGained.length; i++) {
 		var artifactName = game.artifactsGained[i];

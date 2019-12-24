@@ -87,7 +87,15 @@ menu.state = {
 		
 		menu.BK.pageStart("options", function() {
 			$(menu.box).addClass("options").html('\
-				<div>Movement: A D</br>Attack: Left/Right arrows</br>Jump: W</br>Action: Spacebar</br>Speak: Enter</div>\
+				<div>\
+					Try to collect everything. Find the special item.\
+				</div></br>\
+				<div>\
+					Movement: A / D</br>\
+					Attack: Left / Right</br>\
+					Jump: W</br>Action: Spacebar</br>\
+					Speak: Enter\
+				</div>\
 				<div class="back"><button>Back</button></div>\
 			');
 			$(menu.box).find("button").eq(0).on("click", function() {menu.BK.start("main");});
