@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r7">
+    <folder id="0">
+        <file id="0" name="body.png" width="50" height="50" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="1" name="dead.png" width="50" height="50" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="2" name="sword.png" width="50" height="50" pivot_x="0.5" pivot_y="0.5"/>
+        <file id="3" name="texture.png" width="50" height="50" pivot_x="0.5" pivot_y="0.5"/>
+    </folder>
+    <entity id="0" name="entity_000">
+        <animation id="0" name="stand" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="body">
+                <key id="0" spin="0">
+                    <object folder="0" file="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="sword">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-1.191477" y="4.744884"/>
+                </key>
+            </timeline>
+        </animation>
+        <animation id="1" name="attack" length="1000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                </key>
+                <key id="1" time="250">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                </key>
+                <key id="2" time="500">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="2" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="body">
+                <key id="0" spin="0">
+                    <object folder="0" file="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="sword">
+                <key id="0" spin="-1">
+                    <object folder="0" file="2" x="-1.191477" y="4.744884"/>
+                </key>
+                <key id="1" time="250">
+                    <object folder="0" file="2" x="-1.868984" y="3.525371" angle="315.875854" scale_x="1" scale_y="1"/>
+                </key>
+                <key id="2" time="500" spin="-1">
+                    <object folder="0" file="2" x="-9.050556" y="8.809924" angle="4.87004" scale_x="1"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>
