@@ -19,9 +19,10 @@ function createWindow () {
     //title: "[Window]",
     //simpleFullscreen: true,
     //fullscreenable: true,
-    //webPreferences: {
-    //  nodeIntegration: true
-    //}
+    webPreferences: {
+      devTools: false,
+      //nodeIntegration: true,
+    }
   });
   
   mainWindow.menuBarVisible = false; // Hides menu bar.
