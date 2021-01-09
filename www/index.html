@@ -69,12 +69,6 @@
 		position: "absolute",
 		left: "0%", top: "0%", width: "100%", height: "100%"
 	})[0];
-	
-	
-	function exit() {
-		console.log("Exiting.. Electron??");	
-	}
-
 
 
 
@@ -171,9 +165,5 @@
 	//loading.callback = function() {menu.start();};
 
 	ph.state.start("boot");
-	
-	var purgeButton = $("<button>").html("Purge Memory").click(function() {
-		memory.Purge();
-	}).appendTo(document.body);
 	
 </script>

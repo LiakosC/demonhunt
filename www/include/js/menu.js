@@ -24,12 +24,12 @@ menu.state = {
 				<button>Profiles</button>\
 				<button>Options</button>\
 				<button>Cinematic</button>\
-				<button>Exit</button>\
+				<button>Reset Progress</button>\
 			');
 			$(menu.box).find("button").eq(0).on("click", function() {menu.BK.start("profiles");});
 			$(menu.box).find("button").eq(1).on("click", function() {menu.BK.start("options");});
 			$(menu.box).find("button").eq(2).on("click", function() {cinematic.start();});
-			$(menu.box).find("button").eq(3).on("click", function() {exit();});
+			$(menu.box).find("button").eq(3).on("click", function() {memory.Purge();});
 			$(menu.box).find("button").on("mouseover", function() {menu.buttonHoverSound.play();});
 			menu.BK.pageEnd("main", function() {
 				$(menu.box).removeClass("main").html('');
