@@ -2,10 +2,10 @@
 const {app, BrowserWindow} = require('electron');
 const path = require('path');
 
-const FRAME_RESIZABLE_W = 18;
+const FRAME_RESIZABLE_W = 16;
 const FRAME_RESIZABLE_H = 40;
 
-const FRAME_STATIC_W = 8;
+const FRAME_STATIC_W = 6;
 const FRAME_STATIC_H = 30;
 
 function createWindow () {
